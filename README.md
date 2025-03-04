@@ -1,1 +1,1 @@
-# school-template-creative-programming
+# Шаблон проєкту з креативного програмування
