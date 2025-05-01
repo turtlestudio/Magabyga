@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Tetris JS</title>
+  <link rel="stylesheet" href="tetris/css/styles.css">
+</head>
+<body>
+
+  <div id="page">
+    <div id="page_home" class="page">
+      <h1>Tetris JS</h1>
+      <div class="controls">
+        <div>Keyboard controls :</div>
+        <input type="radio" name="switch_mode" id="bt_type_a">
+        <label for="bt_type_a">Up = rotate</label>
+        <input type="radio" name="switch_mode" id="bt_type_b">
+        <label for="bt_type_b">Down = drop</label>
+      </div>
+      <div class="touch_controls">
+        <p>Swipe <strong>anywhere</strong> on the screen to play</p>
+        <p>Tap to rotate</p>
+        <p>Swipe down to drop</p>
+      </div>
+      <a class="button" href="#" id="bt_new_game">New game</a>
+      <div class="about">
+        <h2>About Tetris JS</h2>
+        <p>This is a JS / HTML5 experiment using KineticJS</p>
+        
+      </div>
+    </div>
+    <div id="page_game" class="page">
+      <div id="game_col">
+        <div id="game_zone"></div>
+        <div class="messages_wrapper">
+          <div id="messages"></div>
+        </div>
+        <div id="overlay"></div>
+      </div>
+      <div id="infos">
+        <div id="next_zone"></div>
+        <a class="button" href="#" id="bt_pause">Pause</a>
+        <div class="best_wrapper">
+          Best: <span id="best_zone"></span>
+        </div>
+        <div id="score_zone"></div>
+        <div class="lines_wrapper">
+          Lines: <span id="lines_zone"></span>
+        </div>
+      </div>
+    </div>
+  </div> <!-- /#page -->
+
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/kineticjs/4.6.0/kinetic.min.js"></script>
+  <script type="text/javascript" src="tetris/js/tetris.js"></script>
+</body>
+</html>
