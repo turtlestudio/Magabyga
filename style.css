@@ -3,7 +3,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    color: #00ff00;
+    color: #b3d7dd;
     background-color: #000000;
     text-shadow: 2px 2px #003300;
 }
@@ -12,14 +12,14 @@ header {
     background-color: #000066;
     padding: 20px;
     text-align: center;
-    border-bottom: 4px solid #0000ff;
+    border-bottom: 4px solid #1ca5f5;
 }
 
 section {
     padding: 20px;
     margin: 20px;
     background-color: rgba(0, 0, 100, 0.3);
-    border: 4px solid #0000ff;
+    border: 4px solid #1ca5f5;
     box-shadow: 0 0 10px #0000ff;
 }
 
@@ -37,7 +37,7 @@ ul {
 li {
     margin-bottom: 10px;
     padding: 10px;
-    border: 2px solid #00ff00;
+    border: 2px solid #2b39fa;
     background-color: rgba(0, 255, 0, 0.1);
 }
 

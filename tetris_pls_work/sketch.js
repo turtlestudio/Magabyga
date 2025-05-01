@@ -16,6 +16,9 @@ let currentColor;
 let speed = 30;
 let counter = 0;
 let gameOver = false;
+let gameStarted = false;
+
+let startButton;
 let restartButton;
 
 function setup() {
@@ -26,19 +29,21 @@ function setup() {
     board[i] = Array(cols).fill(0);
   }
 
-  spawnTetromino();
+  startButton = createButton('Start Game');
+  startButton.position(10, height + 10);
+  startButton.mousePressed(startGame);
 
-  // Create the Restart button
   restartButton = createButton('Restart');
-  restartButton.position(10, height + 10);
+  restartButton.position(110, height + 10);
   restartButton.mousePressed(restartGame);
+  restartButton.hide();
 }
 
 function draw() {
   background(0);
   drawBoard();
 
-  if (!gameOver) {
+  if (gameStarted && !gameOver) {
     counter++;
     if (counter % speed === 0) {
       if (!move(0, 1)) {
@@ -51,7 +56,14 @@ function draw() {
       }
     }
     drawTetromino();
-  } else {
+  }
+
+  if (!gameStarted) {
+    fill(255);
+    textSize(32);
+    textAlign(CENTER);
+    text("Press Start", width / 2, height / 2);
+  } else if (gameOver) {
     fill(255, 0, 0);
     textSize(32);
     textAlign(CENTER);
@@ -94,20 +106,12 @@ function spawnTetromino() {
 }
 
 function keyPressed() {
+  if (!gameStarted || gameOver) return;
   if (keyCode === LEFT_ARROW) move(-1, 0);
   else if (keyCode === RIGHT_ARROW) move(1, 0);
   else if (keyCode === DOWN_ARROW) move(0, 1);
   else if (keyCode === UP_ARROW) rotateTetromino();
-  else if (key === " " ) hardDrop(); 
-}
-function hardDrop() {
-  while (move(0, 1)) {} // Move down until it can't
-  freeze();             // Lock the piece
-  clearLines();         // Clear any filled lines
-  spawnTetromino();     // New piece
-  if (!validMove(0, 0)) {
-    gameOver = true;
-  }
+  else if (key === ' ') hardDrop(); // Spacebar for quick drop
 }
 
 function move(dx, dy) {
@@ -171,11 +175,28 @@ function rotateTetromino() {
   }
 }
 
-function restartGame() {
+function hardDrop() {
+  while (move(0, 1)) {}
+  freeze();
+  clearLines();
+  spawnTetromino();
+  if (!validMove(0, 0)) {
+    gameOver = true;
+  }
+}
+
+function startGame() {
+  gameStarted = true;
+  gameOver = false;
+  counter = 0;
+  startButton.hide();
+  restartButton.show();
   for (let i = 0; i < rows; i++) {
     board[i] = Array(cols).fill(0);
   }
-  gameOver = false;
-  counter = 0;
   spawnTetromino();
+}
+
+function restartGame() {
+  startGame(); // Resets and restarts the game
 }
