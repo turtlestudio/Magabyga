@@ -29,6 +29,9 @@ function setup() {
   for (let i = 0; i < rows; i++) {
     board[i] = Array(cols).fill(0);
   }
+  function windowResized() {
+    resizeCanvas(windowWidth, windowHeight);
+  }
 
   startButton = createButton('Start Game');
   startButton.position(windowWidth/2 - width/2+10, height + 10);
