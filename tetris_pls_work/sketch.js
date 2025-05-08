@@ -37,6 +37,27 @@ function setup() {
   restartButton.position(110, height + 10);
   restartButton.mousePressed(restartGame);
   restartButton.hide();
+
+  rightButton = createButton('Move right');
+  rightButton.position(200, height + 80);
+  rightButton.mousePressed(() => { move(1, 0) });
+
+  leftButton = createButton('Move left');
+  leftButton.position(10, height + 80);
+  leftButton.mousePressed(() => { move(-1, 0) });
+
+  downButton = createButton('Move down');
+  downButton.position(95, height + 120);
+  downButton.mousePressed(() => { move(0, 1) });
+
+  hardDropButton = createButton('hardDrop');
+  hardDropButton.position(101, height + 80);
+  hardDropButton.mousePressed(() => {hardDrop() });
+
+  rotateButton = createButton('Rotate');
+  rotateButton.position(110, height + 40);
+  rotateButton.mousePressed(() => {rotateTetromino() });
+  
 }
 
 function draw() {
