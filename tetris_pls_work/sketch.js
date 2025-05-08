@@ -22,40 +22,41 @@ let startButton;
 let restartButton;
 
 function setup() {
-  createCanvas(300, 600);
+  canvas=createCanvas(300, 600);
   frameRate(60);
+  canvas.position(windowWidth/2 - width/2 ,0);
 
   for (let i = 0; i < rows; i++) {
     board[i] = Array(cols).fill(0);
   }
 
   startButton = createButton('Start Game');
-  startButton.position(10, height + 10);
+  startButton.position(windowWidth/2 - width/2+10, height + 10);
   startButton.mousePressed(startGame);
 
   restartButton = createButton('Restart');
-  restartButton.position(110, height + 10);
+  restartButton.position(windowWidth/2 - width/2+110, height + 10);
   restartButton.mousePressed(restartGame);
   restartButton.hide();
 
   rightButton = createButton('Move right');
-  rightButton.position(200, height + 80);
+  rightButton.position(windowWidth/2 - width/2+200, height + 80);
   rightButton.mousePressed(() => { move(1, 0) });
 
   leftButton = createButton('Move left');
-  leftButton.position(10, height + 80);
+  leftButton.position(windowWidth/2 - width/2+10, height + 80);
   leftButton.mousePressed(() => { move(-1, 0) });
 
   downButton = createButton('Move down');
-  downButton.position(95, height + 120);
+  downButton.position(windowWidth/2 - width/2+95, height + 120);
   downButton.mousePressed(() => { move(0, 1) });
 
   hardDropButton = createButton('hardDrop');
-  hardDropButton.position(101, height + 80);
+  hardDropButton.position(windowWidth/2 - width/2+101, height + 80);
   hardDropButton.mousePressed(() => {hardDrop() });
 
   rotateButton = createButton('Rotate');
-  rotateButton.position(110, height + 40);
+  rotateButton.position(windowWidth/2 - width/2+110, height + 40);
   rotateButton.mousePressed(() => {rotateTetromino() });
   
 }
