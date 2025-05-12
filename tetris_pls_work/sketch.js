@@ -17,56 +17,78 @@ let speed = 30;
 let counter = 0;
 let gameOver = false;
 let gameStarted = false;
+let paused = false;
 
-let startButton;
-let restartButton;
+let startButton, restartButton, pauseButton;
+let rightButton, leftButton, downButton, hardDropButton, rotateButton;
+
+function disableTextSelection(el) {
+  el.style('user-select', 'none');
+}
 
 function setup() {
-  canvas=createCanvas(300, 600);
+  canvas = createCanvas(300, 600);
   frameRate(60);
-  canvas.position(windowWidth/2 - width/2 ,0);
+  canvas.position(windowWidth / 2 - width / 2, 0);
 
   for (let i = 0; i < rows; i++) {
     board[i] = Array(cols).fill(0);
   }
-  
 
   startButton = createButton('Start Game');
-  startButton.position(windowWidth/2 - width/2+10, height + 10);
+  startButton.position(windowWidth / 2 - width / 2 + 10, height + 10);
   startButton.mousePressed(startGame);
+  startButton.style('border-radius', '8px');
+  startButton.style('background-color', '#4CAF50');
+  disableTextSelection(startButton);
 
   restartButton = createButton('Restart');
-  restartButton.position(windowWidth/2 - width/2+110, height + 10);
+  restartButton.position(windowWidth / 2 - width / 2 + 110, height + 10);
   restartButton.mousePressed(restartGame);
+  restartButton.style('border-radius', '8px');
+  restartButton.style('background-color', '#F44336');
   restartButton.hide();
+  disableTextSelection(restartButton);
+
+  pauseButton = createButton('Pause');
+  pauseButton.position(windowWidth / 2 - width / 2 + 210, height + 10);
+  pauseButton.mousePressed(togglePause);
+  pauseButton.style('border-radius', '8px');
+  pauseButton.style('background-color', '#FFC107');
+  pauseButton.hide();
+  disableTextSelection(pauseButton);
 
   rightButton = createButton('Move right');
-  rightButton.position(windowWidth/2 - width/2+200, height + 80);
-  rightButton.mousePressed(() => { move(1, 0) });
+  rightButton.position(windowWidth / 2 - width / 2 + 200, height + 80);
+  rightButton.mousePressed(() => { move(1, 0); });
+  disableTextSelection(rightButton);
 
   leftButton = createButton('Move left');
-  leftButton.position(windowWidth/2 - width/2+10, height + 80);
-  leftButton.mousePressed(() => { move(-1, 0) });
+  leftButton.position(windowWidth / 2 - width / 2 + 10, height + 80);
+  leftButton.mousePressed(() => { move(-1, 0); });
+  disableTextSelection(leftButton);
 
   downButton = createButton('Move down');
-  downButton.position(windowWidth/2 - width/2+95, height + 120);
-  downButton.mousePressed(() => { move(0, 1) });
+  downButton.position(windowWidth / 2 - width / 2 + 95, height + 120);
+  downButton.mousePressed(() => { move(0, 1); });
+  disableTextSelection(downButton);
 
-  hardDropButton = createButton('hardDrop');
-  hardDropButton.position(windowWidth/2 - width/2+101, height + 80);
-  hardDropButton.mousePressed(() => {hardDrop() });
+  hardDropButton = createButton('Hard Drop');
+  hardDropButton.position(windowWidth / 2 - width / 2 + 101, height + 80);
+  hardDropButton.mousePressed(() => { hardDrop(); });
+  disableTextSelection(hardDropButton);
 
   rotateButton = createButton('Rotate');
-  rotateButton.position(windowWidth/2 - width/2+110, height + 40);
-  rotateButton.mousePressed(() => {rotateTetromino() });
-  
+  rotateButton.position(windowWidth / 2 - width / 2 + 110, height + 40);
+  rotateButton.mousePressed(() => { rotateTetromino(); });
+  disableTextSelection(rotateButton);
 }
 
 function draw() {
   background(0);
   drawBoard();
 
-  if (gameStarted && !gameOver) {
+  if (gameStarted && !gameOver && !paused) {
     counter++;
     if (counter % speed === 0) {
       if (!move(0, 1)) {
@@ -91,6 +113,11 @@ function draw() {
     textSize(32);
     textAlign(CENTER);
     text("Game Over", width / 2, height / 2);
+  } else if (paused) {
+    fill(255, 255, 0);
+    textSize(32);
+    textAlign(CENTER);
+    text("Paused", width / 2, height / 2);
   }
 }
 
@@ -129,12 +156,12 @@ function spawnTetromino() {
 }
 
 function keyPressed() {
-  if (!gameStarted || gameOver) return;
+  if (!gameStarted || gameOver || paused) return;
   if (keyCode === LEFT_ARROW) move(-1, 0);
   else if (keyCode === RIGHT_ARROW) move(1, 0);
   else if (keyCode === DOWN_ARROW) move(0, 1);
   else if (keyCode === UP_ARROW) rotateTetromino();
-  else if (key === ' ') hardDrop(); // Spacebar for quick drop
+  else if (key === ' ') hardDrop();
 }
 
 function move(dx, dy) {
@@ -211,9 +238,11 @@ function hardDrop() {
 function startGame() {
   gameStarted = true;
   gameOver = false;
+  paused = false;
   counter = 0;
   startButton.hide();
   restartButton.show();
+  pauseButton.show();
   for (let i = 0; i < rows; i++) {
     board[i] = Array(cols).fill(0);
   }
@@ -221,5 +250,10 @@ function startGame() {
 }
 
 function restartGame() {
-  startGame(); // Resets and restarts the game
+  startGame();
+}
+
+function togglePause() {
+  paused = !paused;
+  pauseButton.html(paused ? 'Resume' : 'Pause');
 }
