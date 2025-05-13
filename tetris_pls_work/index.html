@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-   <meta charset="UTF-8">
-     <title>Tetris</title>
-      <style>
+    <meta charset="UTF-8">
+    <title>Tetris</title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <style>
         body {
          margin: 0;
          display: flex;
@@ -13,9 +16,24 @@
          background-image: url('https://wallpaper.forfun.com/fetch/1f/1f39b944bd1ed24902e1d430280b5b3a.jpeg') 
         }
      </style>
-  </head>
-  <body>
-   <div id="game-container"></div>
+    <div id="game-container">
+      <div id="game-board"></div>
+    </div>
+    <div class="buttons-container">
+      <div class="button-row">
+        <a href="#" class="button" id="startButton">Start Game</a>
+        <a href="#" class="button" id="restartButton" style="display:none;">Restart</a>
+      </div>
+      <div class="button-row">
+        <a href="#" class="button" id="rotateButton">Rotate</a>
+        <a href="#" class="button" id="leftButton">Move Left</a>
+        <a href="#" class="button" id="rightButton">Move Right</a>
+      </div>
+      <div class="button-row">
+        <a href="#" class="button" id="downButton">Move Down</a>
+        <a href="#" class="button" id="hardDropButton">Hard Drop</a>
+      </div>
+    </div>
    <script src="https://cdn.jsdelivr.net/npm/p5@1.9.0/lib/p5.min.js"></script> 
    <script src="sketch.js"></script>
   </body>
