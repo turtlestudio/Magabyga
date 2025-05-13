@@ -42,7 +42,7 @@ function setup() {
   startButton.style('background-color', '#4CAF50');
   disableTextSelection(startButton);
 
-  restartButton = createButton('Restart');
+  restartButton = createButton('Rкestart');
   restartButton.position(windowWidth / 2 - width / 2 + 110, height + 10);
   restartButton.mousePressed(restartGame);
   restartButton.style('border-radius', '8px');
