@@ -21,23 +21,14 @@ let paused = false;
 
 let startButton, restartButton, pauseButton;
 let rightButton, leftButton, downButton, hardDropButton, rotateButton;
-let paused = false;
 
-let startButton, restartButton, pauseButton;
-let rightButton, leftButton, downButton, hardDropButton, rotateButton;
-
-function disableTextSelection(el) {
-  el.style('user-select', 'none');
-}
 function disableTextSelection(el) {
   el.style('user-select', 'none');
 }
 
 function setup() {
   canvas = createCanvas(300, 600);
-  canvas = createCanvas(300, 600);
   frameRate(60);
-  canvas.position(windowWidth / 2 - width / 2, 0);
   canvas.position(windowWidth / 2 - width / 2, 0);
 
   for (let i = 0; i < rows; i++) {
@@ -109,7 +100,6 @@ function draw() {
   drawBoard();
 
   if (gameStarted && !gameOver && !paused) {
-  if (gameStarted && !gameOver && !paused) {
     counter++;
     if (counter % speed === 0) {
       if (!move(0, 1)) {
@@ -134,11 +124,6 @@ function draw() {
     textSize(32);
     textAlign(CENTER);
     text("Game Over", width / 2, height / 2);
-  } else if (paused) {
-    fill(255, 255, 0);
-    textSize(32);
-    textAlign(CENTER);
-    text("Paused", width / 2, height / 2);
   } else if (paused) {
     fill(255, 255, 0);
     textSize(32);
@@ -183,12 +168,10 @@ function spawnTetromino() {
 
 function keyPressed() {
   if (!gameStarted || gameOver || paused) return;
-  if (!gameStarted || gameOver || paused) return;
   if (keyCode === LEFT_ARROW) move(-1, 0);
   else if (keyCode === RIGHT_ARROW) move(1, 0);
   else if (keyCode === DOWN_ARROW) move(0, 1);
   else if (keyCode === UP_ARROW) rotateTetromino();
-  else if (key === ' ') hardDrop();
   else if (key === ' ') hardDrop();
 }
 
@@ -267,11 +250,9 @@ function startGame() {
   gameStarted = true;
   gameOver = false;
   paused = false;
-  paused = false;
   counter = 0;
   startButton.hide();
   restartButton.show();
-  pauseButton.show();
   pauseButton.show();
   for (let i = 0; i < rows; i++) {
     board[i] = Array(cols).fill(0);
