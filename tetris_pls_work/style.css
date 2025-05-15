@@ -69,6 +69,35 @@
     margin-bottom: 30px;
   }
 
+.rebutton {
+    display: inline-block;
+    padding: 15px 30px;
+    margin: 10px;
+    font-size: 10px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #d42d17;
+    color: rgb(0, 0, 0);
+    border-radius: 10px;
+    border: none;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s, transform 0.2s;
+  }
+
+.rebutton:hover {
+    background-color: #af2e1d;
+    transform: translateY(-2px);
+  }
+
+.rebutton:active {
+    transform: translateY(2px);
+  }
+
+.rebutton:focus {
+    outline: none;
+  }
+
+
 .button-row {
     display: flex;
     justify-content: center;

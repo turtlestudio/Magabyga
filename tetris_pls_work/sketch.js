@@ -46,12 +46,12 @@ function setup() {
   restartButton.position(windowWidth / 2 - width / 2 + 110, height + 5);
   restartButton.mousePressed(restartGame);
   restartButton.addClass('hidden');
-  restartButton.addClass('button')
+  restartButton.addClass('rebutton')
   restartButton.hide();
   disableTextSelection(restartButton);
   
   pauseButton = createButton('Pause');
-  pauseButton.position(windowWidth / 2 - width / 2 + 210, height + 10);
+  pauseButton.position(windowWidth / 2 - width / 2 + 210, height + 5);
   pauseButton.mousePressed(togglePause);
   pauseButton.addClass('hidden');
   pauseButton.addClass('button')
@@ -59,28 +59,28 @@ function setup() {
   disableTextSelection(pauseButton);
 
   rightButton = createButton('Move right');
-  rightButton.position(windowWidth / 2 - width / 2 + 220, height + 120)
+  rightButton.position(windowWidth / 2 - width / 2 + 220, height + 140)
   rightButton.mousePressed(() => { move(1, 0) });
   rightButton.addClass('hidden');
   rightButton.addClass('movebutton');
   disableTextSelection(rightButton);
 
   leftButton = createButton('Move left');
-  leftButton.position(windowWidth / 2 - width / 2 -15, height + 120);
+  leftButton.position(windowWidth / 2 - width / 2 -15, height + 140);
   leftButton.mousePressed(() => { move(-1, 0) });
   leftButton.addClass('hidden');
   leftButton.addClass('movebutton');
   disableTextSelection(leftButton);
 
   downButton = createButton('Move down');
-  downButton.position(windowWidth / 2 - width / 2 + 95, height + 180);
+  downButton.position(windowWidth / 2 - width / 2 + 95, height + 200);
   downButton.mousePressed(() => { move(0, 1) });
   downButton.addClass('hidden');
   downButton.addClass('button');
   disableTextSelection(downButton);
 
   hardDropButton = createButton('hardDrop');
-  hardDropButton.position(windowWidth / 2 - width / 2 + 101, height + 120);
+  hardDropButton.position(windowWidth / 2 - width / 2 + 101, height + 140);
   hardDropButton.mousePressed(() => { hardDrop() });
   hardDropButton.addClass('hidden');
   hardDropButton.addClass('button');
@@ -88,7 +88,7 @@ function setup() {
 
 
   rotateButton = createButton('Rotate');
-  rotateButton.position(windowWidth / 2 - width / 2 + 110, height + 60);
+  rotateButton.position(windowWidth / 2 - width / 2 + 110, height + 80);
   rotateButton.mousePressed(() => { rotateTetromino() });
   rotateButton.addClass('hidden');
   rotateButton.addClass('button');
